@@ -13,7 +13,7 @@ let remainingLetters = word.length;
 //answerArray to put the lines for word on screen
 let answerArray = [];
 
-
+//Possibly the start of game
 for (let i = 0; i < word.length; i++) {
     answerArray[i] = ("_");
     console.log(answerArray);
@@ -24,10 +24,14 @@ for (let i = 0; i < word.length; i++) {
 }
 keyEvent();
 guessInWord();
+while (answerArray != word || remainingGuess >= 0) {
+    remainingGuess--;
+}
 
 function guessInWord() {
     for (let i = 0; i < word.length; i++) {
         if (remainingLetters === answerArray[i]) {
+
             wins++
         }
     }
