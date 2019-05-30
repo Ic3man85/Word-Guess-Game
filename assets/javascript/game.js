@@ -4,14 +4,17 @@ let wordList = ['tippet', 'leader', 'nymphs', 'backing', 'beadhead',
     'presentation', 'riffle', 'run'
 ];
 //Selects a random word
+
 let word = wordList[Math.floor(Math.random() * wordList.length)];
 console.log(word);
 let lettersGuessed = [];
 let wins = 0;
 let remainingGuess = 10;
-//let remainingLetters = word.length;
 //answerArray to put the lines for word on screen
 let answerArray = [];
+
+startGame();
+keyEvent();
 
 //Possibly the start of game
 function startGame() {
@@ -19,15 +22,25 @@ function startGame() {
         answerArray[i] = ("_");
         console.log(answerArray);
         document.getElementById('answerArray').textContent = answerArray.join(' ');
-        document.getElementById('guessLeft').textContent = remainingGuess;
+        document.getElementById('guessLeft').textContent = remainingGuess = remainingGuess;
         document.getElementById('guessedLetters').textContent = lettersGuessed[i];
         //document.getElementById('wins').textContent = wins;
-        word[i];
-
     }
 }
-startGame();
-keyEvent();
+
+
+function checkWord() {
+    if (answerArray.join(' ') === word) {
+        wins++;
+        alert("Winner!!! " + 'Word is ' + word);
+        document.getElementById('wins').textContent = wins;
+        startGame();
+    } else if (answerArray.join(' ') !== word && remainingGuess <= 0) {
+        remainingGuess--;
+        document.getElementById('guessLeft').textContent = remainingGuess;
+    }
+
+}
 
 function keyEvent() {
     document.onkeyup = function(e) {
@@ -44,13 +57,16 @@ function keyEvent() {
         if (answerArray.join('') === word) {
             alert("Winner!!! " + 'Word is ' + word)
             wins++;
+        } else if (remainingGuess >= 0) {
+            remainingGuess--;
         }
         document.getElementById('wins').textContent = wins;
-        startGame();
+        document.getElementById('guessLeft').textContent = remainingGuess;
     }
+    startGame();
 
-    remainingGuess - lettersGuessed;
 }
+
 
 //function that regenerates the word and resets everything but the wins
 
