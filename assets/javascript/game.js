@@ -25,16 +25,17 @@ function startGame() {
 
 }
 
-
 function checkWord() {
-    if (answerArray.join(' ') === word) {
+    if (answerArray.join('') === word) {
         wins++;
         alert("Winner!!! " + 'Word is ' + word);
         document.getElementById('wins').textContent = wins;
         startGame();
-    } else if (answerArray.join(' ') !== word && remainingGuess >= 0) {
+    } else if (answerArray.join('') !== word && remainingGuess >= 1) {
         remainingGuess--;
         document.getElementById('guessLeft').textContent = remainingGuess;
+    } else if (remainingGuess <= 1) {
+        alert("LOSER!!!! " + "Word Was: " + word);
     }
 
 }
@@ -51,40 +52,18 @@ function keyEvent() {
         }
         document.getElementById('answerArray').textContent = answerArray.join(' ');
         document.getElementById('guessedLetters').textContent = lettersGuessed.join(', ');
-        if (answerArray.join('') === word) {
+        checkWord();
+        /*if (answerArray.join('') === word) {
             wins++;
             alert("Winner!!! " + 'Word is ' + word)
-        } else if (remainingGuess >= 0) {
+        } else if (remainingGuess > 1) {
             remainingGuess--;
-        } else if (remainingGuess <= 0) {
+        } else if (remainingGuess < 1) {
             alert('You Lost!!')
         }
         document.getElementById('wins').textContent = wins;
-        document.getElementById('guessLeft').textContent = remainingGuess;
+        document.getElementById('guessLeft').textContent = remainingGuess;*/
     }
-
 }
 startGame();
 keyEvent();
-startGame();
-
-//function that regenerates the word and resets everything but the wins
-
-/*
-document.addEventListener('keyup', event => {
-    //console.log('event.key', event.key);
-    if (isInWord(event.key, letter)) {
-        console.log(event.key + ' is in word: ' + letter);
-        return answerArray.includes(letter);
-
-    } else {
-        // list wrong guesses
-        console.log(event.key + ' is NOT in word: ' + word);
-    }
-});
-
-
-
-//I just cant figure out how to make it all work together. I think i need another array to put the letters that they have
-//pressed, if the push a correct letter it needs to go to the current word line and if it is not in the word it needs to 
-//go to the guessed letters. also need a variable to keep track of remaining guess's and wins.*/
