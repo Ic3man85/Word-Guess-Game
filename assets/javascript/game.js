@@ -4,7 +4,6 @@ let wordList = ['tippet', 'leader', 'nymphs', 'backing', 'beadhead',
     'presentation', 'riffle', 'run'
 ];
 //Selects a random word
-
 let word = wordList[Math.floor(Math.random() * wordList.length)];
 console.log(word);
 let lettersGuessed = [];
@@ -13,19 +12,17 @@ let remainingGuess = 10;
 //answerArray to put the lines for word on screen
 let answerArray = [];
 
-startGame();
-keyEvent();
-
 //Possibly the start of game
 function startGame() {
     for (let i = 0; i < word.length; i++) {
         answerArray[i] = ("_");
         console.log(answerArray);
         document.getElementById('answerArray').textContent = answerArray.join(' ');
-        document.getElementById('guessLeft').textContent = remainingGuess = remainingGuess;
+        document.getElementById('guessLeft').textContent = remainingGuess;
         document.getElementById('guessedLetters').textContent = lettersGuessed[i];
         //document.getElementById('wins').textContent = wins;
     }
+
 }
 
 
@@ -35,7 +32,7 @@ function checkWord() {
         alert("Winner!!! " + 'Word is ' + word);
         document.getElementById('wins').textContent = wins;
         startGame();
-    } else if (answerArray.join(' ') !== word && remainingGuess <= 0) {
+    } else if (answerArray.join(' ') !== word && remainingGuess >= 0) {
         remainingGuess--;
         document.getElementById('guessLeft').textContent = remainingGuess;
     }
@@ -55,18 +52,21 @@ function keyEvent() {
         document.getElementById('answerArray').textContent = answerArray.join(' ');
         document.getElementById('guessedLetters').textContent = lettersGuessed.join(', ');
         if (answerArray.join('') === word) {
-            alert("Winner!!! " + 'Word is ' + word)
             wins++;
+            alert("Winner!!! " + 'Word is ' + word)
         } else if (remainingGuess >= 0) {
             remainingGuess--;
+        } else if (remainingGuess <= 0) {
+            alert('You Lost!!')
         }
         document.getElementById('wins').textContent = wins;
         document.getElementById('guessLeft').textContent = remainingGuess;
     }
-    startGame();
 
 }
-
+startGame();
+keyEvent();
+startGame();
 
 //function that regenerates the word and resets everything but the wins
 
