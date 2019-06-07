@@ -13,6 +13,7 @@ let remainingGuess = 10;
 let answerArray = [];
 
 //Possibly the start of game
+
 function startGame() {
     for (let i = 0; i < word.length; i++) {
         answerArray[i] = ("_");
@@ -30,14 +31,14 @@ function checkWord() {
         wins++;
         alert("Winner!!! " + 'Word is ' + word);
         document.getElementById('wins').textContent = wins;
-        startGame();
+
     } else if (answerArray.join('') !== word && remainingGuess >= 1) {
         remainingGuess--;
         document.getElementById('guessLeft').textContent = remainingGuess;
     } else if (remainingGuess <= 1) {
         alert("LOSER!!!! " + "Word Was: " + word);
-    }
 
+    }
 }
 
 function keyEvent() {
@@ -64,6 +65,22 @@ function keyEvent() {
         document.getElementById('wins').textContent = wins;
         document.getElementById('guessLeft').textContent = remainingGuess;*/
     }
+}
+
+function reset() {
+    word = wordList[Math.floor(Math.random() * wordList.length)];
+    remainingGuess = 10;
+    document.getElementById('guessLeft').textContent = remainingGuess;
+    startGame();
+    keyEvent();
+    /* for (let i = 0; i < word.length; i++) {
+         answerArray[i] = ("_");
+         console.log(answerArray);
+         document.getElementById('answerArray').textContent = answerArray.join(' ');
+         document.getElementById('guessedLetters').textContent = lettersGuessed[i];
+         //document.getElementById('wins').textContent = wins;
+     }*/
+
 }
 startGame();
 keyEvent();
