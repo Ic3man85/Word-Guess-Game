@@ -31,12 +31,14 @@ function checkWord() {
         wins++;
         alert("Winner!!! " + 'Word is ' + word);
         document.getElementById('wins').textContent = wins;
+        reset();
 
     } else if (answerArray.join('') !== word && remainingGuess >= 1) {
         remainingGuess--;
         document.getElementById('guessLeft').textContent = remainingGuess;
     } else if (remainingGuess <= 1) {
         alert("LOSER!!!! " + "Word Was: " + word);
+        reset();
 
     }
 }
@@ -52,7 +54,7 @@ function keyEvent() {
             }
         }
         document.getElementById('answerArray').textContent = answerArray.join(' ');
-        document.getElementById('guessedLetters').textContent = lettersGuessed.join(', ');
+        document.getElementById('guessedLetters').textContent = lettersGuessed.join(' ,  ');
         checkWord();
         /*if (answerArray.join('') === word) {
             wins++;
@@ -69,18 +71,14 @@ function keyEvent() {
 
 function reset() {
     word = wordList[Math.floor(Math.random() * wordList.length)];
+    console.log(word);
+    lettersGuessed = [];
+    answerArray = [];
     remainingGuess = 10;
     document.getElementById('guessLeft').textContent = remainingGuess;
+    // document.getElementById('guessedLetters').textContent = lettersGuessed.join(' ');
     startGame();
     keyEvent();
-    /* for (let i = 0; i < word.length; i++) {
-         answerArray[i] = ("_");
-         console.log(answerArray);
-         document.getElementById('answerArray').textContent = answerArray.join(' ');
-         document.getElementById('guessedLetters').textContent = lettersGuessed[i];
-         //document.getElementById('wins').textContent = wins;
-     }*/
-
 }
 startGame();
 keyEvent();
