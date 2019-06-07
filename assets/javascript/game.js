@@ -21,7 +21,6 @@ function startGame() {
         document.getElementById('answerArray').textContent = answerArray.join(' ');
         document.getElementById('guessLeft').textContent = remainingGuess;
         document.getElementById('guessedLetters').textContent = lettersGuessed[i];
-        //document.getElementById('wins').textContent = wins;
     }
 
 }
@@ -46,7 +45,6 @@ function checkWord() {
 function keyEvent() {
     document.onkeyup = function(e) {
         lettersGuessed.push(e.key)
-            //console.log(lettersGuessed);
         for (let i = 0; i < word.length; i++) {
             if (lettersGuessed.includes(word[i])) {
                 answerArray[i] = word[i];
@@ -56,16 +54,6 @@ function keyEvent() {
         document.getElementById('answerArray').textContent = answerArray.join(' ');
         document.getElementById('guessedLetters').textContent = lettersGuessed.join(' ,  ');
         checkWord();
-        /*if (answerArray.join('') === word) {
-            wins++;
-            alert("Winner!!! " + 'Word is ' + word)
-        } else if (remainingGuess > 1) {
-            remainingGuess--;
-        } else if (remainingGuess < 1) {
-            alert('You Lost!!')
-        }
-        document.getElementById('wins').textContent = wins;
-        document.getElementById('guessLeft').textContent = remainingGuess;*/
     }
 }
 
@@ -76,7 +64,6 @@ function reset() {
     answerArray = [];
     remainingGuess = 10;
     document.getElementById('guessLeft').textContent = remainingGuess;
-    // document.getElementById('guessedLetters').textContent = lettersGuessed.join(' ');
     startGame();
     keyEvent();
 }
